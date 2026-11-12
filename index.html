@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Salón | Salón de Eventos</title>
+  <meta name="description" content="Salón de eventos para casamientos, cumpleaños y fiestas corporativas.">
+  <link rel="icon" type="image/svg+xml" href="imagenes/logo_s.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Encabezado -->
+  <header class="banner-superior" id="banner-superior">
+
+    <!-- Logo -->
+    <a class="banner-superior__logo" id="enlace-logo" href="#portada">
+      <img id="imagen-logo" src="imagenes/logo.svg" alt="Logo del salón">
+    </a>
+
+    <!-- Redes sociales -->
+    <nav class="banner-superior__redes" id="redes-banner" aria-label="Redes sociales">
+      <a href="https://wa.me/5490000000000" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://instagram.com/usuario" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://facebook.com/usuario" target="_blank" rel="noopener">Facebook</a>
+      <a href="mailto:contacto@ejemplo.com">Mail</a>
+    </nav>
+
+    <!-- Botón del menú móvil -->
+    <button class="banner-superior__boton-menu" id="boton-menu" type="button"
+            aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-desplegable">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </header>
+
+  <!-- Menú principal -->
+  <nav class="menu" id="menu-desplegable" aria-label="Menú principal">
+
+    <ul class="menu__lista" id="menu-lista">
+      <li><a href="#seccion-presentacion">El salón</a></li>
+      <li><a href="#seccion-contacto">Contacto</a></li>
+      <li><a href="#seccion-fotos">Fotos</a></li>
+      <li><a href="#seccion-horarios">Horarios</a></li>
+      <li><a href="#seccion-mapa">Cómo llegar</a></li>
+      <li><a href="#seccion-detalles">Detalles</a></li>
+    </ul>
+
+    <!-- Redes sociales en móvil -->
+    <div class="menu__redes" id="redes-menu">
+      <a href="https://wa.me/5490000000000" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://instagram.com/usuario" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://facebook.com/usuario" target="_blank" rel="noopener">Facebook</a>
+    </div>
+
+  </nav>
+
+  <main>
+
+    <!--PORTADA (foto de fondo + nombre)-->
+    <section class="portada" id="portada">
+
+      <img class="portada__fondo" id="imagen-portada" src="imagenes/salon2.webp" alt="Vista del salón" fetchpriority="high">
+
+      <div class="portada__contenido">
+        <h1 class="portada__titulo">Nombre del Salón</h1>
+        <p class="portada__frase">El lugar ideal para tus momentos especiales</p>
+        <img class="portada__logo" id="imagen-logo-portada" src="imagenes/logo.svg" alt="Logo del salón">
+      </div>
+
+    </section>
+
+    <!-- Contenido principal -->
+    <div class="contenido" id="contenido">
+
+      <!-- Columna izquierda -->
+      <div class="columna columna--izquierda" id="columna-izquierda">
+
+        <!-- Presentación -->
+        <section class="seccion presentacion" id="seccion-presentacion">
+
+          <!-- Imagen de presentación -->
+          <img class="presentacion__imagen" id="imagen-presentacion" src="imagenes/salon7.webp" alt="Interior del salón">
+
+          <div class="presentacion__texto" id="texto-presentacion">
+            <h2>Bienvenidos</h2>
+            <p>Texto de presentación: tipo de eventos, qué hace especial al salón y su capacidad.</p>
+            <p>Segundo párrafo opcional con más detalles.</p>
+          </div>
+
+        </section>
+
+        <!-- Galería de fotos -->
+        <section class="seccion fotos" id="seccion-fotos">
+          <h2>Conocé el salón</h2>
+
+          <!-- Carrusel de fotos -->
+          <div class="carrusel" id="carrusel" role="button" tabindex="0" aria-label="Abrir galería completa">
+            <div class="carrusel__pista" id="carrusel-pista">
+              <img id="imagen-carrusel-1" src="imagenes/salon1.webp" alt="Foto 1 del salón">
+              <img id="imagen-carrusel-2" src="imagenes/salon5.webp" alt="Foto 2 del salón">
+              <img id="imagen-carrusel-3" src="imagenes/salon3.webp" alt="Foto 3 del salón">
+              <img id="imagen-carrusel-4" src="imagenes/salon4.webp" alt="Foto 4 del salón">
+              <img id="imagen-carrusel-5" src="imagenes/salon6.webp" alt="Foto 5 del salón">
+
+  <!-- Copia de las fotos para que el movimiento no tenga corte -->
+              <img class="carrusel__copia" src="imagenes/salon1.webp" alt="" aria-hidden="true">
+              <img class="carrusel__copia" src="imagenes/salon5.webp" alt="" aria-hidden="true">
+              <img class="carrusel__copia" src="imagenes/salon3.webp" alt="" aria-hidden="true">
+              <img class="carrusel__copia" src="imagenes/salon4.webp" alt="" aria-hidden="true">
+              <img class="carrusel__copia" src="imagenes/salon6.webp" alt="" aria-hidden="true">
+            </div>
+          </div>
+
+          <p class="fotos__ayuda">Tocá las fotos para ver la galería completa</p>
+        </section>
+
+        <!-- Ubicación -->
+        <section class="seccion mapa" id="seccion-mapa">
+          <h2>Cómo llegar</h2>
+
+          <!-- Mapa de Google -->
+          <div class="mapa__marco" id="mapa-marco">
+            <iframe id="mapa-google" src="" title="Ubicación del salón"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+
+          <a class="boton boton--secundario" id="boton-abrir-mapa"
+             href="https://maps.google.com/?q=Direccion+del+salon" target="_blank" rel="noopener">
+            Abrir en Google Maps
+          </a>
+        </section>
+
+        <!-- Detalles del salón -->
+        <section class="seccion detalles" id="seccion-detalles">
+          <h2>Detalles del salón</h2>
+          <ul class="detalles__lista" id="lista-detalles">
+            <li>Capacidad para 150 personas</li>
+            <li>Aire acondicionado</li>
+            <li>Estacionamiento</li>
+            <li>Cocina equipada</li>
+            <li>Sonido e iluminación</li>
+            <li>Acceso para personas con movilidad reducida</li>
+          </ul>
+        </section>
+
+      </div>
+
+      <!-- Columna derecha -->
+      <div class="columna columna--derecha" id="columna-derecha">
+
+        <!-- Contacto -->
+        <section class="seccion tarjeta contacto" id="seccion-contacto">
+          <h2>Contacto</h2>
+
+          <ul class="contacto__lista" id="lista-contacto">
+            <li>
+              <span class="contacto__etiqueta">Dirección</span>
+              <a href="https://maps.google.com/?q=Direccion+del+salon" target="_blank" rel="noopener">Calle Ejemplo 1234, Ciudad</a>
+            </li>
+            <li>
+              <span class="contacto__etiqueta">Teléfono</span>
+              <a href="tel:+5490000000000">+54 9 00 0000-0000</a>
+            </li>
+            <li>
+              <span class="contacto__etiqueta">Mail</span>
+              <a href="mailto:contacto@ejemplo.com">contacto@ejemplo.com</a>
+            </li>
+          </ul>
+
+          <a class="boton boton--whatsapp" id="boton-contacto-whatsapp"
+             href="https://wa.me/5490000000000" target="_blank" rel="noopener">
+            Escribinos por WhatsApp
+          </a>
+        </section>
+
+        <!-- Horarios -->
+        <section class="seccion tarjeta horarios" id="seccion-horarios">
+          <h2>Horarios</h2>
+          <ul class="horarios__lista" id="lista-horarios">
+            <li><span>Lunes a viernes</span> <strong>10:00 a 22:00</strong></li>
+            <li><span>Sábados</span> <strong>10:00 a 14:00</strong></li>
+            <li><span>Eventos</span> <strong>A coordinar</strong></li>
+          </ul>
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="banner-inferior" id="banner-inferior">
+    <p class="banner-inferior__nombre">&copy; 2026 Salón</p>
+    <p class="banner-inferior__creditos">Developed by: Maximiliano Funes</p>
+  </footer>
+
+  <!-- Acceso rápido a WhatsApp -->
+  <a class="whatsapp-flotante" id="whatsapp-flotante"
+     href="https://wa.me/5490000000000" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+    WhatsApp
+  </a>
+
+  <!-- Galería emergente -->
+  <dialog class="galeria" id="galeria">
+    <button class="galeria__boton-cerrar" id="galeria-cerrar" type="button" aria-label="Cerrar galería">&times;</button>
+
+    <div class="galeria__grilla" id="galeria-grilla">
+      <!-- Foto 1 -->
+      <img id="imagen-galeria-1" src="imagenes/salon1.webp" alt="Foto 1 del salón">
+      <!-- Foto 2 -->
+      <img id="imagen-galeria-2" src="imagenes/salon5.webp" alt="Foto 2 del salón">
+      <!-- Foto 3 -->
+      <img id="imagen-galeria-3" src="imagenes/salon3.webp" alt="Foto 3 del salón">
+      <!-- Foto 4 -->
+      <img id="imagen-galeria-4" src="imagenes/salon4.webp" alt="Foto 4 del salón">
+      <!-- Foto 5 -->
+      <img id="imagen-galeria-5" src="imagenes/salon6.webp" alt="Foto 5 del salón">
+    </div>
+  </dialog>
+
+</body>
+</html>

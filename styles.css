@@ -1,0 +1,747 @@
+/* styles.css · Salón de eventos (versión 2)
+   Las secciones van numeradas en el mismo orden que el HTML. */
+
+
+/* 1. VARIABLES: para cambiar colores o medidas, tocar solo esta parte */
+:root {
+  /* Colores */
+  --color-blanco: #ffffff;
+  --color-texto: #111111;
+  --color-gris-fondo: #f3f3f4;
+  --color-gris-borde: #dcdce0;
+  --color-gris-texto: #55555b;
+  --color-gris-oscuro: #2b2b2f;
+  --color-rosa: #ee7fab;
+  --color-rosa-oscuro: #d9558c;
+  --color-rosa-claro: #fbe3ec;
+
+  /* Tipografías */
+  --fuente-titulos: Georgia, "Times New Roman", serif;
+  --fuente-texto: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Medidas */
+  --alto-banner: 64px;
+  --ancho-maximo: 1200px;
+  --espacio-chico: 0.75rem;
+  --espacio-medio: 1.5rem;
+  --espacio-grande: 2.5rem;
+  --radio-borde: 16px;
+  --sombra-tarjeta: 0 10px 28px rgba(0, 0, 0, 0.12);
+
+  /* Grosor de la línea rosa (derecha e inferior) que da profundidad a las secciones */
+  --grosor-borde-rosa: 6px;
+
+  /* Opacidad del panel blanco de la portada: 0 = invisible, 1 = totalmente blanco */
+  --opacidad-panel-portada: 0.4;
+}
+
+
+/* 2. BASE: estilos generales de toda la página */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Evita que el banner fijo tape el título al saltar a una sección */
+  scroll-padding-top: calc(var(--alto-banner) + 1rem);
+}
+
+body {
+  margin: 0;
+  /* Espacio para que el banner fijo no tape el contenido */
+  padding-top: var(--alto-banner);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-texto);
+  background: var(--color-gris-fondo);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2 {
+  margin: 0 0 var(--espacio-chico);
+  font-family: var(--fuente-titulos);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+/* Rayita rosa debajo de cada título de sección */
+h2::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-top: 0.5rem;
+  border-radius: 2px;
+  background: var(--color-rosa);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+/* Contorno visible al navegar con teclado */
+:focus-visible {
+  outline: 3px solid var(--color-texto);
+  outline-offset: 3px;
+}
+
+
+/* 3. BOTONES */
+.boton {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border: 2px solid var(--color-rosa);
+  border-radius: 999px;
+  background: var(--color-rosa);
+  color: var(--color-texto);
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.boton:hover {
+  border-color: var(--color-rosa-oscuro);
+  background: var(--color-rosa-oscuro);
+  transform: translateY(-2px);
+}
+
+/* Botón blanco con borde negro (ej: "Abrir en Google Maps") */
+.boton--secundario {
+  border-color: var(--color-texto);
+  background: var(--color-blanco);
+}
+
+.boton--secundario:hover {
+  border-color: var(--color-texto);
+  background: var(--color-rosa-claro);
+}
+
+/* Botón de WhatsApp dentro de la tarjeta de contacto */
+.boton--whatsapp {
+  display: block;
+  margin-top: var(--espacio-medio);
+}
+
+
+/* 4. BANNER SUPERIOR (fijo): logo, redes y botón del menú */
+.banner-superior {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-medio);
+  height: var(--alto-banner);
+  padding: 0 var(--espacio-medio);
+  border-bottom: 3px solid var(--color-rosa);
+  background: var(--color-blanco);
+}
+
+/* Logo del banner: el alto se cambia con el porcentaje de "height" */
+.banner-superior__logo {
+  display: flex;
+  align-items: center;
+  height: 120%;
+  padding: 0.5rem 0;
+}
+
+.banner-superior__logo img {
+  width: auto;
+  height: 100%;
+}
+
+/* Redes sociales (el mismo estilo se usa en el banner y en el menú) */
+.banner-superior__redes,
+.menu__redes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.banner-superior__redes a,
+.menu__redes a {
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--color-gris-borde);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.banner-superior__redes a:hover,
+.menu__redes a:hover {
+  border-color: var(--color-rosa);
+  background: var(--color-rosa-claro);
+}
+
+/* Botón hamburguesa (las tres rayitas) */
+.banner-superior__boton-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  padding: 0 10px;
+  border: 2px solid var(--color-blanco);
+  background: none;
+  cursor: pointer;
+}
+
+.banner-superior__boton-menu span {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-texto);
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+/* Con el menú abierto, las rayitas se convierten en una "X" */
+.banner-superior__boton-menu[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.banner-superior__boton-menu[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.banner-superior__boton-menu[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* 5. MENÚ DESPLEGABLE: se abre al agregarle la clase "menu--abierto" (JavaScript) */
+.menu {
+  position: fixed;
+  top: var(--alto-banner);
+  right: 0;
+  z-index: 99;
+  width: min(320px, 100%);
+  max-height: calc(100vh - var(--alto-banner));
+  overflow-y: auto;
+  padding: var(--espacio-medio);
+  border-bottom: 3px solid var(--color-rosa);
+  border-left: 3px solid var(--color-rosa);
+  background: var(--color-blanco);
+  box-shadow: var(--sombra-tarjeta);
+  /* Cerrado: escondido a la derecha */
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.3s ease, visibility 0.3s;
+}
+
+.menu--abierto {
+  transform: none;
+  visibility: visible;
+}
+
+.menu__lista a {
+  display: block;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.menu__lista a:hover {
+  background: var(--color-rosa-claro);
+}
+
+/* Las redes dentro del menú solo se muestran en el celular */
+.menu__redes {
+  display: none;
+}
+
+
+/* 6. PORTADA: foto de fondo con el panel del nombre, el eslogan y el logo */
+.portada {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 70vh;
+  padding: var(--espacio-grande) var(--espacio-medio);
+  overflow: hidden;
+  background: var(--color-gris-borde);
+}
+
+/* Foto de fondo: el contraste y la saturación suben un poco la nitidez percibida */
+.portada__fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: contrast(1.05) saturate(1.08);
+}
+
+/* Panel translúcido: para hacerlo más transparente, bajar --opacidad-panel-portada (arriba, en las variables) */
+.portada__contenido {
+  position: relative;
+  max-width: 640px;
+  padding: var(--espacio-grande);
+  border-radius: var(--radio-borde);
+  background: rgba(255, 255, 255, var(--opacidad-panel-portada));
+  box-shadow: var(--sombra-tarjeta);
+  text-align: center;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+/* Halo blanco suave detrás de las letras para que se lean sobre cualquier foto */
+.portada__titulo,
+.portada__frase {
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+}
+
+.portada__titulo {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+.portada__frase {
+  margin-bottom: var(--espacio-medio);
+  font-size: 1.15rem;
+}
+
+/* Logo dentro del panel: cambiar el ancho para agrandarlo o achicarlo */
+.portada__logo {
+  width: 240px;
+  margin: 0 auto;
+}
+
+
+/* 7. CONTENIDO Y COLUMNAS: en la compu, izquierda ancha y derecha angosta */
+.contenido {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--espacio-grande);
+  align-items: start;
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: var(--espacio-grande) var(--espacio-medio);
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-grande);
+  min-width: 0;
+}
+
+/* La columna derecha acompaña al hacer scroll (así no queda un hueco vacío) */
+.columna--derecha {
+  position: sticky;
+  top: calc(var(--alto-banner) + var(--espacio-medio));
+}
+
+
+/* 8. SECCIONES */
+.seccion {
+  min-width: 0;
+}
+
+/* Tarjeta con profundidad (Contacto y Horarios): línea rosa a la derecha y abajo */
+.tarjeta {
+  padding: var(--espacio-medio);
+  border-right: var(--grosor-borde-rosa) solid var(--color-rosa);
+  border-bottom: var(--grosor-borde-rosa) solid var(--color-rosa);
+  border-radius: var(--radio-borde);
+  background: var(--color-blanco);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+
+/* 8.1 Presentación: foto a la izquierda y texto a la derecha */
+.presentacion {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--espacio-medio);
+  align-items: center;
+}
+
+.presentacion__imagen {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-right: var(--grosor-borde-rosa) solid var(--color-rosa);
+  border-bottom: var(--grosor-borde-rosa) solid var(--color-rosa);
+  border-radius: var(--radio-borde);
+  background: var(--color-gris-borde);
+  box-shadow: var(--sombra-tarjeta);
+  /* Tamaño de la foto: 100% = normal, más de 100% = más grande */
+  scale: 100%;
+}
+
+
+/* 8.2 Fotos: carrusel animado (al hacer click se abre la galería) */
+.carrusel {
+  /* Permite usar "cqw" (ancho del carrusel) en la animación */
+  container-type: inline-size;
+  height: 240px;
+  overflow: hidden;
+  border-radius: var(--radio-borde);
+  background: var(--color-gris-borde);
+  box-shadow: var(--sombra-tarjeta);
+  cursor: pointer;
+}
+
+.carrusel__pista {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: deslizar-fotos 30s linear infinite;
+}
+
+
+.carrusel__pista img {
+  flex-shrink: 0;
+  width: 320px;
+  height: 100%;
+  object-fit: cover;
+  margin-right: var(--espacio-chico);
+}
+
+/* Va de la primera a la última foto y vuelve */
+@keyframes deslizar-fotos {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.fotos__ayuda {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  color: var(--color-gris-texto);
+}
+
+
+/* 8.3 Mapa */
+.mapa__marco {
+  margin-bottom: var(--espacio-medio);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radio-borde);
+  background: var(--color-gris-borde);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.mapa__marco iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* 8.4 Detalles: lista de características en recuadros */
+.detalles__lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--espacio-chico) var(--espacio-medio);
+}
+
+.detalles__lista li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--color-gris-borde);
+  border-radius: 12px;
+  background: var(--color-blanco);
+}
+
+/* Tilde rosa antes de cada detalle */
+.detalles__lista li::before {
+  content: "✓";
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--color-rosa);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+
+/* 8.5 Contacto */
+.contacto__lista {
+  display: grid;
+  gap: var(--espacio-chico);
+}
+
+.contacto__lista li {
+  padding-bottom: var(--espacio-chico);
+  border-bottom: 1px solid var(--color-gris-borde);
+  overflow-wrap: anywhere;
+}
+
+.contacto__lista li:last-child {
+  border-bottom: 0;
+}
+
+/* Etiqueta chica sobre cada dato (Dirección, Teléfono, Mail) */
+.contacto__etiqueta {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gris-texto);
+}
+
+.contacto__lista a {
+  font-weight: 600;
+  text-decoration-color: var(--color-rosa);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.contacto__lista a:hover {
+  background: var(--color-rosa-claro);
+}
+
+
+/* 8.6 Horarios */
+.horarios__lista li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-chico);
+  padding: 0.7rem 0;
+  border-bottom: 2px dashed var(--color-gris-borde);
+}
+
+.horarios__lista li:last-child {
+  border-bottom: 0;
+}
+
+
+/* 9. BANNER INFERIOR: único lugar con letras blancas sobre gris oscuro */
+.banner-inferior {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--espacio-chico);
+  padding: var(--espacio-medio);
+  border-top: 4px solid var(--color-rosa);
+  background: var(--color-gris-oscuro);
+  color: var(--color-blanco);
+}
+
+.banner-inferior p {
+  margin: 0;
+}
+
+
+/* 10. BOTÓN FLOTANTE DE WHATSAPP: solo se ve en el celular (ver sección 13) */
+.whatsapp-flotante {
+  display: none;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 90;
+  padding: 0.8rem 1.2rem;
+  border-radius: 999px;
+  background: var(--color-rosa);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  color: var(--color-texto);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+
+/* 11. GALERÍA COMPLETA: ventana emergente que se abre desde el carrusel */
+.galeria {
+  width: min(1000px, 92vw);
+  max-height: 90vh;
+  padding: var(--espacio-medio);
+  border: 0;
+  border-radius: var(--radio-borde);
+  background: var(--color-blanco);
+  color: var(--color-texto);
+}
+
+/* Fondo oscuro detrás de la ventana */
+.galeria::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.galeria__boton-cerrar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: 0 0 var(--espacio-chico) auto;
+  border: 2px solid var(--color-texto);
+  border-radius: 50%;
+  background: var(--color-rosa);
+  color: var(--color-texto);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.galeria__grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--espacio-chico);
+}
+
+.galeria__grilla img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--color-gris-borde);
+}
+
+
+/* 12. ANIMACIÓN DE APARICIÓN (descendente): todavía no se usa, se activa con JavaScript */
+.aparece {
+  opacity: 0;
+  transform: translateY(-32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.aparece--visible {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* 13. CELULAR: pantallas de hasta 800px */
+@media (max-width: 800px) {
+
+  /* Las redes pasan del banner al menú */
+  .banner-superior__redes {
+    display: none;
+  }
+
+  .menu__redes {
+    display: flex;
+    margin-top: var(--espacio-medio);
+    padding-top: var(--espacio-medio);
+    border-top: 1px solid var(--color-gris-borde);
+  }
+
+  .whatsapp-flotante {
+    display: block;
+  }
+
+  .portada {
+    min-height: 60vh;
+  }
+
+  .portada__contenido {
+    padding: var(--espacio-medio);
+  }
+
+  .portada__logo {
+    width: 180px;
+  }
+
+  /* Una sola columna */
+  .contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--espacio-grande);
+    padding: var(--espacio-grande) 1rem;
+  }
+
+  /* Las columnas "desaparecen": las secciones quedan sueltas y se ordenan solas */
+  .columna {
+    display: contents;
+  }
+
+  /* Orden de las secciones en el celular */
+  #seccion-presentacion { order: 1; }
+  #seccion-contacto     { order: 2; }
+  #seccion-fotos        { order: 3; }
+  #seccion-horarios     { order: 4; }
+  #seccion-mapa         { order: 5; }
+  #seccion-detalles     { order: 6; }
+
+  .presentacion {
+    grid-template-columns: 1fr;
+  }
+
+  .presentacion__imagen {
+    aspect-ratio: 16 / 10;
+  }
+
+    .mapa__marco {
+    aspect-ratio: 4 / 3;
+  }
+
+  .carrusel {
+    height: 200px;
+  }
+
+  .carrusel__pista img {
+    width: 260px;
+  }
+
+  /* Banner inferior: textos apilados y espacio para el botón flotante */
+  .banner-inferior {
+    flex-direction: column;
+    padding-bottom: 5rem;
+    text-align: center;
+  }
+}
+
+
+/* Accesibilidad: respeta a quien desactivó las animaciones en su dispositivo */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+
+  .carrusel {
+    overflow-x: auto;
+  }
+
+  .carrusel__pista {
+    animation: none;
+  }
+
+    .carrusel__copia {
+    display: none;
+  }
+
+  .aparece {
+    opacity: 1;
+    transform: none;
+  }
+}
